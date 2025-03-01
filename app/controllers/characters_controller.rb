@@ -30,7 +30,11 @@ class CharactersController < ApplicationController
             end
 
     # partial match filters
+    @first_name_filter = params[:first_name_filter]
+    @last_name_filter = params[:last_name_filter]
     @company_filter = params[:company_filter]
+    query = query.where('characters.first_name ilike ?', "%#{@first_name_filter}%") if @first_name_filter.present?
+    query = query.where('characters.last_name ilike ?', "%#{@last_name_filter}%") if @last_name_filter.present?
     query = if @company_filter.present?
               query.joins(character_jobs: { job: :company }).where('companies.company_name ilike ?', "%#{@company_filter}%")
             else

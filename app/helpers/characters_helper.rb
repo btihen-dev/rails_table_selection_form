@@ -1,10 +1,12 @@
 module CharactersHelper
   def sort_link(column:)
-    next_sort = column == params[:column] ? future_direction : 'asc'
+    next_direction = column == params[:column] ? future_direction : 'asc'
     display_arrow = params[:column] == column ? current_sort_arrow : tag.i(class: "bi bi-arrow-down-up")
+    link_to_params = params.permit!.to_h.merge(column: column, direction: next_direction)
     link_to(
       display_arrow.html_safe,
-      characters_path(column: column, direction: next_sort),
+      characters_path(link_to_params),
+      # characters_path(column: column, direction: next_sort),
       data: { turbo_action: 'replace' }
     )
   end

@@ -1,5 +1,20 @@
 <%= form_with url: characters_path, method: :get,
     data: { controller: "characters-filter", turbo_action: 'replace' } do |form| %>
+
+  <!-- Preserve existing sort parameters -->
+  <% if params[:column].present? %>
+    <%= form.hidden_field :column, value: params[:column] %>
+  <% end %>
+  <% if params[:direction].present? %>
+    <%= form.hidden_field :direction, value: params[:direction] %>
+  <% end %>
+
+  <!-- Include all other filter parameters except the current one -->
+  <% params.each do |key, value| %>
+    <% next if key == field_name || key == 'column' || key == 'direction' || key == 'controller' || key == 'action' %>
+    <%= form.hidden_field key, value: value %>
+  <% end %>
+
   <%= form.text_field(
     field_name,
     placeholder: placeholder,
