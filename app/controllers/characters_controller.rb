@@ -29,6 +29,15 @@ class CharactersController < ApplicationController
               query.order("#{column} #{direction}")
             end
 
+    # partial match filters
+    @company_filter = params[:company_filter]
+    query = if @company_filter.present?
+              query.joins(character_jobs: { job: :company }).where('companies.company_name ilike ?', "%#{@company_filter}%")
+            else
+              query
+            end
+
+
     # execute query
     @characters = query.all
   end

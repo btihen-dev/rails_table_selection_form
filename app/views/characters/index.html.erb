@@ -27,6 +27,7 @@
         </th>
         <th scope="col">
           Company <%= sort_link(column: 'companies.company_name') %>
+          <%= render "filter_form", field_name: :company_filter, placeholder: "partial name" %>
         </th>
       </tr>
     </thead>
@@ -38,8 +39,7 @@
             <%= check_box_tag "selected_rows[]",
                 character.id,
                 false,
-                id: "selected_rows_#{character.id}",  # required Explicitly set the ID
-                data: { action: "change->filter-form#handleRowSelection" }
+                id: "selected_rows_#{character.id}" #, data: { action: "change->characters-filter#handleRowSelection" }
             %>
           </td>
           <th scope="row"><%= link_to character.id, edit_character_path(character) %></th>
