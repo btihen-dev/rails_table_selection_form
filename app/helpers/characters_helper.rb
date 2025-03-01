@@ -4,7 +4,8 @@ module CharactersHelper
     display_arrow = params[:column] == column ? current_sort_arrow : tag.i(class: "bi bi-arrow-down-up")
     link_to(
       display_arrow.html_safe,
-      characters_path(column: column, direction: next_sort)
+      characters_path(column: column, direction: next_sort),
+      data: { turbo_action: 'replace' }
     )
   end
 
