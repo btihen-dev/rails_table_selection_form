@@ -42,6 +42,12 @@ class CharactersController < ApplicationController
             end
 
 
+    # Dropdown selections
+    @gender_selection = params[:gender_selection]
+    @species_selection = params[:species_selection]
+    query = query.where(gender: @gender_selection) if @gender_selection.present?
+    query = query.where(species_id: @species_selection) if @species_selection.present?
+
     # execute query
     @characters = query.all
   end
