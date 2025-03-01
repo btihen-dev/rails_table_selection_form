@@ -3,7 +3,12 @@ class CharactersController < ApplicationController
 
   # GET /characters or /characters.json
   def index
-    @characters = Character.all
+    # @characters = Character.all
+    @characters =
+      Character
+        .includes(:species)
+        .includes(character_jobs: { job: :company })
+        .order(:last_name, :first_name)
   end
 
   # GET /characters/1 or /characters/1.json
