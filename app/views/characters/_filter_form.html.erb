@@ -1,5 +1,5 @@
 <%= form_with url: characters_path, method: :get,
-    data: { controller: "characters-filter", filter_form_target: "form", turbo_action: 'replace' } do |form| %>
+    data: { controller: "characters-filter", turbo_action: 'replace' } do |form| %>
   <%= form.text_field(
     field_name,
     placeholder: placeholder,
