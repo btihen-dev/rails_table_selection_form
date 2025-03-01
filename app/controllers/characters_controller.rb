@@ -3,12 +3,34 @@ class CharactersController < ApplicationController
 
   # GET /characters or /characters.json
   def index
+    # initial query
     # @characters = Character.all
-    @characters =
-      Character
-        .includes(:species)
-        .includes(character_jobs: { job: :company })
-        .order(:last_name, :first_name)
+
+    # fix n+1 query
+    # @characters =
+    #   Character
+    #     .includes(:species)
+    #     .includes(character_jobs: { job: :company })
+    #     .order(:last_name, :first_name)
+
+    # query with sorting
+    column = params[:column]
+    direction = params[:direction]
+
+    # base query
+    query = Character
+            .includes(:species)
+            .includes(character_jobs: { job: :company })
+
+    # add sort if direction is given
+    query = if direction == 'none' || column.blank?
+              query.order('characters.id')
+            else
+              query.order("#{column} #{direction}")
+            end
+
+    # execute query
+    @characters = query.all
   end
 
   # GET /characters/1 or /characters/1.json
