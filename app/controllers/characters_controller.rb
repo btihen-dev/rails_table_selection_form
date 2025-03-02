@@ -16,6 +16,7 @@ class CharactersController < ApplicationController
     # query with sorting
     column = params[:column]
     direction = params[:direction]
+    @selected_rows = params[:selected_rows]&.split(',')&.map(&:to_i) || []
 
     # base query
     query = Character

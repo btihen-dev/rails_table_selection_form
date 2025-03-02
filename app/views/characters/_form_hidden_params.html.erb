@@ -8,6 +8,6 @@
 
 <!-- Include all other filter parameters except the current one -->
 <% params.each do |key, value| %>
-  <% next if key == field_name || key == 'column' || key == 'direction' || key == 'controller' || key == 'action' %>
+  <% next if key == field_name.to_s || key == 'column' || key == 'direction' || key == 'controller' || key == 'action' %>
   <%= form.hidden_field key, value: value %>
 <% end %>

@@ -1,5 +1,5 @@
 <%= form_with url: characters_path, method: :get,
-    data: { controller: "characters-filter", turbo_action: 'replace' } do |form| %>
+    data: { controller: "characters-table", turbo_action: 'replace' } do |form| %>
 
   <%= render "form_hidden_params", form: form, field_name: field_name %>
 
@@ -7,5 +7,5 @@
     options_for_select([['All', '']] + options, params[field_name]),
     {},
     class: "form-select form-select-sm",
-    data: { action: "change->characters-filter#filter" }) %>
+    data: { action: "change->characters-table#filter" }) %>
 <% end %>

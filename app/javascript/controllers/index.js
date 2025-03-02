@@ -7,5 +7,8 @@ import { application } from "./application";
 import CharactersFilterController from "./characters_filter_controller";
 application.register("characters-filter", CharactersFilterController);
 
-// import HelloController from "./hello_controller";
-// application.register("hello", HelloController);
+import CharactersTableController from "./characters_table_controller";
+application.register("characters-table", CharactersTableController);
+
+// import HelloController from "./hello_controller"
+// application.register("hello", HelloController)

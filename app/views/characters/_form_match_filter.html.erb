@@ -1,5 +1,5 @@
 <%= form_with url: characters_path, method: :get,
-    data: { controller: "characters-filter", turbo_action: 'replace' } do |form| %>
+    data: { controller: "characters-table", turbo_action: 'replace' } do |form| %>
 
   <%= render "form_hidden_params", form: form, field_name: field_name %>
 
@@ -9,5 +9,5 @@
     value: params[field_name],
     class: "form-control form-control-sm",
     autocomplete: "off",
-    data: { action: "input->characters-filter#filter" }) %>
+    data: { action: "input->characters-table#filter" }) %>
 <% end %>
