@@ -41,7 +41,6 @@ class CharactersController < ApplicationController
               query
             end
 
-
     # Dropdown selections
     @gender_selection = params[:gender_selection]
     @species_selection = params[:species_selection]
